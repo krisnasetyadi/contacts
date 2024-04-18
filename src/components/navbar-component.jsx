@@ -7,12 +7,15 @@ function Navbar (props) {
     const navigate = useNavigate()
 
     return (
-        <div className={`flex justify-between border-b border-b-gray-300 py-2 h-1/4 bg-yellow`}>
-            <div className="font-bold text-xl" >
-                Contacts
+        <div className={`flex justify-between border-b border-b-gray-300 py-2 h-1/4 `}>
+            <div className="flex items-end">
+                <div className="font-bold text-2xl" >
+                    Contacts
+                </div>
             </div>
-            <button type="button" className="" onClick={() => navigate('/add')}>
-                <img src={AddCircleFilledIcon} alt="Add button" />
+           
+            <button type="button" className="h-34 md:h-20" onClick={() => navigate('/add')}>
+                <img src={AddCircleFilledIcon} alt="Add button" className="h-34" />
             </button>
         </div>
     )

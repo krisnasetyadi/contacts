@@ -5,7 +5,7 @@ function Content (props) {
     const { children } = props
 
     return (
-        <div className="flex flex-col m-10 md:m-6">
+        <div className="flex flex-col mx-6">
             <Navbar />
             <div className="w-full flex justify-center">
                {children}

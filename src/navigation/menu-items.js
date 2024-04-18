@@ -1,5 +1,7 @@
+/* eslint-disable no-useless-escape */
 import ContactScreen from '../screens/contact-screen/index'
 import ContactShowScreen from '../screens/contact-screen/show'
+import ContactEditScreen from '../screens/contact-screen/show'
 import ContactAddScreen from '../screens/contact-screen/add'
 
 export const router = [
@@ -10,9 +12,14 @@ export const router = [
       action: [
         {
             name: 'show',
-            route: "/:id",
+            route: "/:id/show",
             element: <ContactShowScreen />,
         },
+        {
+          name: 'edit',
+          route: "/:id/edit",
+          element: <ContactEditScreen />,
+      },
         {
           name: 'add',
           route: "/add",
