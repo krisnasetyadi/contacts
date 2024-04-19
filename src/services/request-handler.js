@@ -51,12 +51,12 @@ export default class RequestHandler {
     return this.request('get', null, params);
   }
 
-  find(param) {
-    return this.request('get', param);
-  }
-
   store(body) {
     return this.request('post', body);
+  }
+
+  find(id, param) {
+    return this.requestBy('get', id, param);
   }
 
   update(id, body) {

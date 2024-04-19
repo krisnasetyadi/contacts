@@ -10,6 +10,7 @@ const Input = (props) => {
         name={name}
         placeholder={placeholder}
         value={value}
+        defaultValue={value}
         onChange={onChange}
         className={`
           block w-full px-4 py-2 mt-2 text-gray-700 

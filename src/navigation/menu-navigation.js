@@ -1,7 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { router } from "./menu-items";
+import Loading from "../components/loading-component";
+import { connect } from "react-redux";
 
-function App() {
+function App(props) {
+  const { isLoading } = props
   const flattenRouteComponent = []
   
   router.forEach(m => {
@@ -12,16 +15,24 @@ function App() {
   })
 
   return (
-    <Router>
-      <Routes>
-        {flattenRouteComponent.map((component, idx) => {
-          return (
-            <Route key={idx} path={component.route} element={component.element} />
-          )
-        })}
-      </Routes>
-    </Router>
+    <>
+      <Loading visible={isLoading} />
+      <Router>
+        <Routes>
+          {flattenRouteComponent.map((component, idx) => {
+            return (
+              <Route key={idx} path={component.route} element={component.element} />
+            )
+          })}
+        </Routes>
+      </Router>
+    </>
   );
 }
 
-export default App;
+
+const stateProps = state => ({
+  isLoading: state.root.loading,
+});
+
+export default connect(stateProps)(App);

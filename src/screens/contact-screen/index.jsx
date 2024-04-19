@@ -1,33 +1,32 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
+import { connect } from "react-redux"
 import Card from "../../components/card-component";
 import Content from '../layout'
 import { ContactApi } from '../../services/index'
+import { getContactListRequest, getContactListSuccess, getContactListFailure } from '../../stores/actions/index'
 
-function IndexScreen() {
+function IndexScreen(props) {
+    const { getContactListRequest, getContactListSuccess, getContactListFailure} = props
     const [data, setData] = useState([])
-    const [isLoadig, setIsLoading] = useState(false)
     const navigate = useNavigate()
     
     useEffect(() => {
-        setIsLoading(true)
+        getContactListRequest()
         ContactApi.get()
             .then(({ data }) => {
-
                 setData(data)
-                setIsLoading(false)
+                getContactListSuccess()
             })
             .catch(error => {
                 toast.error(error.message || 'something went wrong')
-                setIsLoading(false)
+                getContactListFailure()
             })
     }, [])
 
     return (
         <Content>
-            {isLoadig ? 'Loading ...' : ''}
             <ul>
                 {data.length > 0 && data?.map((item) => {
                     const { firstName, lastName, photo, id } = item
@@ -48,4 +47,9 @@ function IndexScreen() {
     )
 }
 
-export default IndexScreen
+const dispatchToProps = {
+    getContactListRequest,
+    getContactListSuccess,
+    getContactListFailure, 
+};
+export default connect(null, dispatchToProps)(IndexScreen)

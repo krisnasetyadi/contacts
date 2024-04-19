@@ -1,6 +1,6 @@
 import React from "react";
 
-const Modal = ({ isOpen, onClose, children, title='', onSave }) => {
+const Modal = ({ isOpen, onClose, children, title='', onSave, submitButton={} }) => {
   if (!isOpen) return null;
 
   return (
@@ -24,19 +24,19 @@ const Modal = ({ isOpen, onClose, children, title='', onSave }) => {
     
           <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
             <button
-              className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+              className="background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 hover:bg-gray-100 rounded-md"
               type="button"
               onClick={onClose}
             >
               Close
             </button>
             <button
-              className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none focus:outline-none mr-1 mb-1"
+              className={`${submitButton?.class ? submitButton?.class : 'bg-green-500' } font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none focus:outline-none mr-1 mb-1`}
               type="button"
               style={{ transition: "all .15s ease" }}
               onClick={onSave}
             >
-              Save
+              {submitButton?.text ? submitButton?.text  : 'Save'}
             </button>
           </div>
         </div>
