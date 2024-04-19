@@ -6,6 +6,8 @@ import Card from "../../components/card-component";
 import Content from '../layout'
 import { ContactApi } from '../../services/index'
 import { getContactListRequest, getContactListSuccess, getContactListFailure } from '../../stores/actions/index'
+import { isBas64, isImage } from "../../utils/helper";
+import { UserCircleIcon } from "../../assets/icons";
 
 function IndexScreen(props) {
     const { getContactListRequest, getContactListSuccess, getContactListFailure} = props
@@ -36,7 +38,7 @@ function IndexScreen(props) {
                                 key={id} 
                                 firstName={firstName}
                                 lastName={lastName}
-                                photo={photo}
+                                photo={isImage(photo) ? photo : isBas64(photo) ? photo : UserCircleIcon}
                             />
                         </li>
                     )

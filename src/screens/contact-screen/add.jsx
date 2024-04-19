@@ -9,6 +9,7 @@ import { createContactRequest, createContactSuccess, createContactFailure } from
 import HeaderContactDetail from "../../components/header-contact-detail"
 import Input from "../../components/input-component"
 import { useNavigate } from "react-router-dom";
+import { isBas64, isImage } from "../../utils/helper";
 
 const schema = yup.object().shape({
     firstName: yup.string().required(),
@@ -16,7 +17,6 @@ const schema = yup.object().shape({
     age: yup
       .string()
       .test('age', 'age must be a positive number', value => {
-        console.log('valueee', value)
         return Number(value) > 0
       })
       .test('age', 'age length must be same or less than two', value => {
@@ -84,7 +84,7 @@ function AddScreen () {
             <HeaderContactDetail title="New Contact"  />
             <div className="flex justify-center rounded-full items-center my-1.5" >
                 <img 
-                    src={fields.photo.includes('http') ? fields.photo : UserCircleIcon} 
+                    src={isImage(fields.photo) ? fields.photo : isBas64(fields.photo) ? fields.photo : UserCircleIcon} 
                     alt={`${fields.firstName}-contact`} 
                     className="rounded-full h-14 w-14" 
                 />

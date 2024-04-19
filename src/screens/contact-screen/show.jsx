@@ -7,6 +7,7 @@ import { UserCircleIcon } from "../../assets/icons"
 import HeaderContactDetail from "../../components/header-contact-detail"
 import InputReadOnly from "../../components/input-read-only-component"
 import { getContactDetailRequest, getContactDetailSuccess, getContactDetailFailure } from '../../stores/actions/index'
+import { isBas64, isImage } from "../../utils/helper"
 
 function ShowScreen(props) {
     const { getContactDetailRequest, getContactDetailSuccess, getContactDetailFailure } = props
@@ -32,7 +33,7 @@ function ShowScreen(props) {
              <HeaderContactDetail title="Contact Detail" submitText="Edit" onClick={() => navigate(`/${id}/edit`) }/>
              <div className="flex justify-center rounded-full items-center my-1.5" >
                 <img 
-                    src={data?.photo && data?.photo?.includes('http') ? data.photo : UserCircleIcon} 
+                    src={isImage(data?.photo) ? data.photo : isBas64(data.photo) ? data.photo  : UserCircleIcon} 
                     alt={`${data?.firstName}-contact`} 
                     className="rounded-full h-14 w-14" 
                 />
