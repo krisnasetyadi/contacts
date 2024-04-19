@@ -8,6 +8,7 @@ import HeaderContactDetail from "../../components/header-contact-detail"
 import InputReadOnly from "../../components/input-read-only-component"
 import { getContactDetailRequest, getContactDetailSuccess, getContactDetailFailure } from '../../stores/actions/index'
 import { capitalize, isBas64, isImage } from "../../utils/helper"
+import Image from "../../components/image-component"
 
 function ShowScreen(props) {
     const { getContactDetailRequest, getContactDetailSuccess, getContactDetailFailure } = props
@@ -32,11 +33,7 @@ function ShowScreen(props) {
         <div className="flex flex-col justify-center items-center">
              <HeaderContactDetail title="Contact Detail" submitText="Edit" onClick={() => navigate(`/${id}/edit`) }/>
              <div className="flex justify-center rounded-full items-center my-1.5" >
-                <img 
-                    src={isImage(data?.photo) ? data.photo : isBas64(data.photo) ? data.photo  : UserCircleIcon} 
-                    alt={`${data?.firstName}-contact`} 
-                    className="rounded-full h-14 w-14" 
-                />
+                <Image image={data?.photo} alt={`${data?.firstName}-contact`} />
              </div>
              <div>
                 <InputReadOnly name="age" value={`${data?.age || ''}` }/>
