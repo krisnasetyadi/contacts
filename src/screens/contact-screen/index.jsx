@@ -57,7 +57,7 @@ function IndexScreen(props) {
                                                 key={id} 
                                                 firstName={capitalize(firstName)}
                                                 lastName={capitalize(lastName)}
-                                                photo={isImage(photo) ? photo : isBas64(photo) ? photo : UserCircleIcon}
+                                                photo={photo}
                                             />
                                         </li>
                                     )

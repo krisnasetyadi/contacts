@@ -7,7 +7,6 @@ import { ContactApi } from "../../services";
 import HeaderContactDetail from "../../components/header-contact-detail"
 import Input from "../../components/input-component"
 import Modal from "../../components/modal-component"
-import { UserCircleIcon } from "../../assets/icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { 
   updateContactRequest,
@@ -20,7 +19,8 @@ import {
   getContactDetailFailure,
   removeContactFailure
 } from '../../stores/actions/index'
-import { capitalize, isBas64, isImage } from "../../utils/helper";
+import { capitalize } from "../../utils/helper";
+import Image from "../../components/image-component";
 
 const schema = yup.object().shape({
     firstName: yup.string().required(),
@@ -157,11 +157,7 @@ function EditScreen (props) {
         <form className="flex flex-col justify-center items-center" onSubmit={handleSubmit}>
             <HeaderContactDetail title="Edit Contact" submitDisable={!validateForm} />
             <div className="flex justify-center rounded-full items-center my-1.5" >
-                <img 
-                    src={isImage(fields.photo) ? fields.photo : isBas64(fields.photo) ?fields.photo : UserCircleIcon} 
-                    alt={`${fields.firstName}-contact`} 
-                    className="rounded-full h-14 w-14" 
-                />
+                <Image image={fields.photo} alt={`${fields.firstName}-contact`}/>
             </div>
             <div className="flex flex-col gap-2">
                 <Input 

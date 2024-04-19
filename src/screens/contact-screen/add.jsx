@@ -4,12 +4,11 @@ import { connect } from "react-redux";
 import * as yup from "yup";
 import { ContactApi } from "../../services";
 
-import { UserCircleIcon } from "../../assets/icons";
 import { createContactRequest, createContactSuccess, createContactFailure } from '../../stores/actions/index'
 import HeaderContactDetail from "../../components/header-contact-detail"
 import Input from "../../components/input-component"
 import { useNavigate } from "react-router-dom";
-import { isBas64, isImage } from "../../utils/helper";
+import Image from "../../components/image-component";
 
 const schema = yup.object().shape({
     firstName: yup.string().required(),
@@ -83,11 +82,7 @@ function AddScreen () {
         <form className="flex flex-col justify-center items-center" onSubmit={handleSubmit}>
             <HeaderContactDetail title="New Contact"  />
             <div className="flex justify-center rounded-full items-center my-1.5" >
-                <img 
-                    src={isImage(fields.photo) ? fields.photo : isBas64(fields.photo) ? fields.photo : UserCircleIcon} 
-                    alt={`${fields.firstName}-contact`} 
-                    className="rounded-full h-14 w-14" 
-                />
+              <Image image={fields.photo} alt={`${fields.firstName}-contact`}/>
             </div>
             <div className="flex flex-col gap-2">
                 <Input 

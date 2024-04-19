@@ -5,6 +5,13 @@ export function isImage(url) {
   return urlPattern.test(url) || imageExtensions.test(url)
 }
 
+export function isFileImage(filePath) {
+  const regexFile =  /^file:\/\/\/.+/;
+
+  return regexFile.test(filePath)
+
+}
+
 export function isBas64(base64String) {
   const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
 
