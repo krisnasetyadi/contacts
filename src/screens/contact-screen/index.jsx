@@ -18,7 +18,7 @@ function IndexScreen(props) {
         getContactListRequest()
         ContactApi.get()
             .then(({ data }) => {
-                setData(data)
+                setData(data.sort())
                 getContactListSuccess()
             })
             .catch(error => {
@@ -26,23 +26,47 @@ function IndexScreen(props) {
                 getContactListFailure()
             })
     }, [])
+    
+    const groupContacts = () => {
+        const groupContacts = {}
+        data.forEach((contact) => {
+            const firstLetter = contact.firstName.charAt(0).toUpperCase()
+            if(!groupContacts[firstLetter]) {
+                groupContacts[firstLetter] = [];
+            }
+            groupContacts[firstLetter].push(contact)
+        })
+        return groupContacts
+    }
+    
+    const groupedContact = groupContacts() 
 
     return (
         <Content>
-            <ul>
-                {data.length > 0 && data?.map((item) => {
-                    const { firstName, lastName, photo, id } = item
+           <ul>
+                {Object.keys(groupedContact).map((letter) => {
                     return (
-                        <li className='flex justify-center border-b border-b-gray-400 hover:bg-blue-100 rounded-md' onClick={() => navigate(`${id}/show`)}>
-                            <Card
-                                key={id} 
-                                firstName={firstName}
-                                lastName={lastName}
-                                photo={isImage(photo) ? photo : isBas64(photo) ? photo : UserCircleIcon}
-                            />
-                        </li>
+                        <div key={letter}>
+                            <span className="text-xl font-bold text-gray-600">{letter}</span>
+                      
+                                {groupedContact[letter].map((item) => {
+                                    const { firstName, lastName, photo, id } = item
+                                    return (
+                                        <li className='flex justify-center border-b border-b-gray-400 hover:bg-blue-100 rounded-md' onClick={() => navigate(`${id}/show`)}>
+                                            <Card
+                                                key={id} 
+                                                firstName={firstName}
+                                                lastName={lastName}
+                                                photo={isImage(photo) ? photo : isBas64(photo) ? photo : UserCircleIcon}
+                                            />
+                                        </li>
+                                    )
+                                })}
+                          
+                        </div>
+                  
                     )
-                })}
+                }) }
             </ul>
          
         </Content>
