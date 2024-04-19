@@ -20,7 +20,7 @@ export function isBas64(base64String) {
 }
 
 export const capitalize = (text) => {
-  if(text.length > 0) {
+  if(text && text.length > 0) {
     const splitted = text.split(' ')
 
     const upperCaseString = splitted.map(str => str.charAt(0).toUpperCase() +  str.slice(1))
