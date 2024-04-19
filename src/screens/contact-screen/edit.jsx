@@ -20,7 +20,7 @@ import {
   getContactDetailFailure,
   removeContactFailure
 } from '../../stores/actions/index'
-import { isBas64, isImage } from "../../utils/helper";
+import { capitalize, isBas64, isImage } from "../../utils/helper";
 
 const schema = yup.object().shape({
     firstName: yup.string().required(),
@@ -152,7 +152,7 @@ function EditScreen (props) {
           text: isLoading ? 'Loading ... ' : 'Delete'
         }}
       >
-        Are you sure want to Delete <span className="font-bold">{data.firstName} {data.lastName}</span> from contact ?
+        Are you sure want to Delete <span className="font-bold">{capitalize(data.firstName) || ''} {capitalize(data.lastName) || ''}</span> from contact ?
       </Modal>
         <form className="flex flex-col justify-center items-center" onSubmit={handleSubmit}>
             <HeaderContactDetail title="Edit Contact" submitDisable={!validateForm} />

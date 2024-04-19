@@ -18,3 +18,15 @@ export function isBas64(base64String) {
     return false
   }
 }
+
+export const capitalize = (text) => {
+  if(text.length > 0) {
+    const splitted = text.split(' ')
+
+    const upperCaseString = splitted.map(str => str.charAt(0).toUpperCase() +  str.slice(1))
+    const capitalizedText = upperCaseString.join(' ');
+    return capitalizedText
+  }
+ 
+  return text
+}

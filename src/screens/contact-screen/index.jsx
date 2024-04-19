@@ -6,7 +6,7 @@ import Card from "../../components/card-component";
 import Content from '../layout'
 import { ContactApi } from '../../services/index'
 import { getContactListRequest, getContactListSuccess, getContactListFailure } from '../../stores/actions/index'
-import { isBas64, isImage } from "../../utils/helper";
+import { capitalize, isBas64, isImage } from "../../utils/helper";
 import { UserCircleIcon } from "../../assets/icons";
 
 function IndexScreen(props) {
@@ -55,8 +55,8 @@ function IndexScreen(props) {
                                         <li className='flex justify-center border-b border-b-gray-400 hover:bg-blue-100 rounded-md' onClick={() => navigate(`${id}/show`)}>
                                             <Card
                                                 key={id} 
-                                                firstName={firstName}
-                                                lastName={lastName}
+                                                firstName={capitalize(firstName)}
+                                                lastName={capitalize(lastName)}
                                                 photo={isImage(photo) ? photo : isBas64(photo) ? photo : UserCircleIcon}
                                             />
                                         </li>

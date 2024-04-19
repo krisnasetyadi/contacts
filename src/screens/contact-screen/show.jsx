@@ -7,7 +7,7 @@ import { UserCircleIcon } from "../../assets/icons"
 import HeaderContactDetail from "../../components/header-contact-detail"
 import InputReadOnly from "../../components/input-read-only-component"
 import { getContactDetailRequest, getContactDetailSuccess, getContactDetailFailure } from '../../stores/actions/index'
-import { isBas64, isImage } from "../../utils/helper"
+import { capitalize, isBas64, isImage } from "../../utils/helper"
 
 function ShowScreen(props) {
     const { getContactDetailRequest, getContactDetailSuccess, getContactDetailFailure } = props
@@ -42,7 +42,7 @@ function ShowScreen(props) {
                 <InputReadOnly name="age" value={`${data?.age || ''}` }/>
              </div>
              <div className="flex flex-col justify-center gap-2">
-                <InputReadOnly name="firstName" value={`${data?.firstName || ''} ${data?.lastName || ''}`}/>
+                <InputReadOnly name="firstName" value={`${capitalize(data?.firstName) || ''} ${capitalize(data?.lastName) || ''}`}/>
           
             </div>
             
