@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { LeftArrowIcon } from "../assets/icons"
 
 function HeaderContactDetail (props) {
-    const { submitDisable, title='', submitText='Save', onClick } = props
+    const { submitDisable=false, title='', submitText='Save', onClick } = props
 
     const navigate = useNavigate()
     

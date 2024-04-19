@@ -1,10 +1,8 @@
 import React from "react"
-import { UserCircleIcon } from "../assets/icons"
-import { isImage } from "../utils/helper"
 
 function Card(props) {
     const { firstName, lastName, photo} = props
-    // isImage(photo) ? : UserCircleIcon
+    
     return (
         <div className={`flex border-gray-200 rounded-md w-full h-20 items-center`}>
             <div className="flex justify-center rounded-full items-center" >
