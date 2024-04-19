@@ -3,11 +3,10 @@ import { useNavigate, useParams } from "react-router-dom"
 import { connect } from "react-redux"
 import toast from "react-hot-toast"
 import { ContactApi } from "../../services"
-import { UserCircleIcon } from "../../assets/icons"
 import HeaderContactDetail from "../../components/header-contact-detail"
 import InputReadOnly from "../../components/input-read-only-component"
 import { getContactDetailRequest, getContactDetailSuccess, getContactDetailFailure } from '../../stores/actions/index'
-import { capitalize, isBas64, isImage } from "../../utils/helper"
+import { capitalize } from "../../utils/helper"
 import Image from "../../components/image-component"
 
 function ShowScreen(props) {
