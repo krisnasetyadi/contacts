@@ -44,7 +44,7 @@ function IndexScreen(props) {
     return (
         <Content>
            <ul>
-                {Object.keys(groupedContact).map((letter) => {
+                {Object.keys(groupedContact).sort().map((letter) => {
                     return (
                         <div key={letter}>
                             <span className="text-xl font-bold text-gray-600">{letter}</span>
