@@ -38,9 +38,12 @@ function ShowScreen(props) {
                     className="rounded-full h-14 w-14" 
                 />
              </div>
+             <div>
+                <InputReadOnly name="age" value={`${data?.age || ''}` }/>
+             </div>
              <div className="flex flex-col justify-center gap-2">
                 <InputReadOnly name="firstName" value={`${data?.firstName || ''} ${data?.lastName || ''}`}/>
-                <InputReadOnly name="age" value={`${data?.age || ''}` }/>
+          
             </div>
             
            

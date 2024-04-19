@@ -103,7 +103,7 @@ function EditScreen (props) {
             .then(() => {
               setErrors(intialData)
               navigate(`/${id}/show`)
-              toast.success("New contact successfully created!");
+              toast.success("Edit contact successfully updated!");
               updateContactSuccess()
             })
             .catch((error) => {
@@ -155,7 +155,7 @@ function EditScreen (props) {
         Are you sure want to Delete <span className="font-bold">{data.firstName} {data.lastName}</span> from contact ?
       </Modal>
         <form className="flex flex-col justify-center items-center" onSubmit={handleSubmit}>
-            <HeaderContactDetail title="New Contact" submitDisable={!validateForm} />
+            <HeaderContactDetail title="Edit Contact" submitDisable={!validateForm} />
             <div className="flex justify-center rounded-full items-center my-1.5" >
                 <img 
                     src={isImage(fields.photo) ? fields.photo : isBas64(fields.photo) ?fields.photo : UserCircleIcon} 
